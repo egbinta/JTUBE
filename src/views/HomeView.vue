@@ -3,7 +3,7 @@
     <Header @run-search="runSearch" />
     <div class="home-page">
       <SideBar />
-      <ItemList :items="itmes" />
+      <ItemList :items="items" />
     </div>
   </div>
 </template>
@@ -28,28 +28,21 @@ export default {
   },
   methods: {
     async runSearch(search) {
-      try {
-        const res = await axios.get(
-          "https://youtube138.p.rapidapi.com/search/",
-          {
-            params: { q: search },
-            headers: {
-              "X-RapidAPI-Key":
-                "b89922295dmshe7d2453f3a26507p131c79jsnb5230be8042f",
-              "X-RapidAPI-Host": "youtube138.p.rapidapi.com",
-            },
-          }
-        );
-        console.log(res.data.contents);
-        return res.data.contents;
-      } catch (error) {
-        console.log(error);
-      }
+      const response = await axios.get(
+        "https://youtube138.p.rapidapi.com/search/",
+        {
+          params: { q: search },
+          headers: {
+            "X-RapidAPI-Key":
+              "b89922295dmshe7d2453f3a26507p131c79jsnb5230be8042f",
+            "X-RapidAPI-Host": "youtube138.p.rapidapi.com",
+          },
+        }
+      );
+      const dataContents = response.data.contents;
+      this.items = dataContents;
+      console.log(this.items);
     },
-  },
-
-  async created() {
-    this.items = await this.runSearch();
   },
 };
 </script>
@@ -60,5 +53,7 @@ export default {
 .main-area {
   background-color: rgb(211, 208, 235);
   width: 84vw;
+  max-height: 687px;
+  overflow-y: scroll;
 }
 </style>
