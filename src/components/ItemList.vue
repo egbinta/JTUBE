@@ -2,12 +2,14 @@
   <div class="main-area p-3">
     <div class="row">
       <div v-for="item in items" :key="item.id" class="col-md-3">
-        <div class="card mb-3">
+        <div class="card mb-3" style="width: 18rem">
+          <img class="card-img-top" src="" alt="Card image cap" />
           <div class="card-body">
-            {{ type.video.descriptionSnippet }}
-          </div>
-          <div class="footer">
-            <p>card footer</p>
+            <h5 class="card-title">Card title</h5>
+            <p class="card-text">
+              Some quick example text to build on the card title and make up the
+              bulk of the card's content.
+            </p>
           </div>
         </div>
       </div>
@@ -30,18 +32,5 @@ export default {
 .footer {
   background: rgb(178, 205, 229);
   height: 100px;
-}
-.card {
-  position: relative;
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-direction: column;
-  flex-direction: column;
-  min-width: 0;
-  word-wrap: break-word;
-  background-color: #fff;
-  background-clip: border-box;
-  /* border: 1px solid rgba(0,0,0,.125); */
-  /* border-radius: .25rem; */
 }
 </style>
