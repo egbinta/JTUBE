@@ -12,6 +12,6 @@ export default {
 .navbar {
   width: 250px;
   height: 92.2vh;
-  background: rgb(57, 57, 101);
+  background: rgb(229 229 251);
 }
 </style>

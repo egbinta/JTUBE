@@ -52,8 +52,6 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 .head {
-  /* padding: 10px; */
-  /* height: 50px; */
   padding: 10px;
   z-index: 99;
   background: rgb(47, 47, 83);
@@ -87,7 +85,7 @@ export default {
 }
 .user {
   display: flex;
-  justify-content: end;
+  justify-content: flex-end;
   color: #fff;
   font-size: 22px;
   font-weight: 700;
