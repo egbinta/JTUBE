@@ -1,6 +1,11 @@
 <template>
   <div class="card mb-3" style="width: 18rem">
-    <router-link :to="`/moviedetail/${item.video.videoId}`">
+    <router-link
+      :to="{
+        name: 'movie',
+        params: { videoId: item.video.videoId },
+      }"
+    >
       <img
         class="card-img-top"
         :src="item.video.thumbnails[0].url"

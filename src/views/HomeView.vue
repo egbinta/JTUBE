@@ -35,7 +35,7 @@ export default {
           params: { q: this.searchItem },
           headers: {
             "X-RapidAPI-Key":
-              "b89922295dmshe7d2453f3a26507p131c79jsnb5230be8042f",
+              "0aea2bfe0bmshc9a762c6bdc9530p1e63edjsn7f1aaeb420ec",
             "X-RapidAPI-Host": "youtube138.p.rapidapi.com",
           },
         }

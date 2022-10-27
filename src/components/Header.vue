@@ -3,8 +3,10 @@
     <div class="container-fluid">
       <div class="row d-flex justify-content-center align-items-center">
         <div class="col-md-2 logo">
-          <span><i class="fa fa-play" aria-hidden="true"></i></span>
-          Jtube
+          <router-link to="/">
+            <span><i class="fa fa-play" aria-hidden="true"></i></span>
+            Jtube
+          </router-link>
         </div>
         <div class="col-md-8 search">
           <form @submit.prevent="onsubmit" class="d-flex">
@@ -57,6 +59,7 @@ export default {
   background: rgb(47, 47, 83);
 }
 .logo {
+  text-decoration: none;
   color: #fff;
   font-size: 20px;
   font-weight: 700;
