@@ -56,6 +56,8 @@
               </strong>
             </div>
           </div>
+          <!-- comments section -->
+          <ViewComments :comment="comment" />
         </div>
         <div class="col-md-4">
           <RelatedVideo :relatedContents="relatedContents" />
@@ -69,18 +71,21 @@
 import axios from "axios";
 import YouTube from "vue3-youtube";
 import RelatedVideo from "@/components/RelatedVideo.vue";
+import ViewComments from "@/components/ViewComments.vue";
 export default {
   name: "MovieDetail",
   components: {
     YouTube,
     RelatedVideo,
+    ViewComments,
   },
   data() {
     return {
       videoURL: "",
-      videoID: this.$route.params.videoId,
+      videoID: "",
       details: "",
       relatedContents: [],
+      comment: [],
       showMoretext: false,
       showmore: true,
       showless: false,
@@ -131,11 +136,42 @@ export default {
           console, log(error);
         });
     },
+    async comments() {
+      await axios
+        .get("https://youtube138.p.rapidapi.com/video/comments/", {
+          params: { id: this.videoID },
+          headers: {
+            "X-RapidAPI-Key":
+              "0aea2bfe0bmshc9a762c6bdc9530p1e63edjsn7f1aaeb420ec",
+            "X-RapidAPI-Host": "youtube138.p.rapidapi.com",
+          },
+        })
+        .then((response) => {
+          this.comment = response.data.comments;
+          console.log("test2 ", response.data.comments);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    },
+  },
+  watch: {
+    $route(to, from) {
+      if (to.params.videoId) {
+        this.videoURL = `https://www.youtube.com/watch?v=${to.params.videoId}`;
+        this.videoID = to.params.videoId;
+        this.videoDetail();
+        this.relatedcontent();
+        this.comments();
+      }
+    },
   },
   created() {
     this.videoURL = `https://www.youtube.com/watch?v=${this.$route.params.videoId}`;
+    this.videoID = this.$route.params.videoId;
     this.videoDetail();
     this.relatedcontent();
+    this.comments();
   },
 };
 </script>
@@ -179,9 +215,15 @@ export default {
   padding: 9px;
   margin-top: 10px;
 }
-.stats .statView .publishDate {
+.statView {
   color: #040101;
-  font-weight: 700;
+  font-weight: 600;
+  font-size: 14px;
+}
+.publishDate {
+  color: #040101;
+  font-weight: 600;
+  font-size: 14px;
 }
 .subscribers-detail {
   margin-left: 8px;

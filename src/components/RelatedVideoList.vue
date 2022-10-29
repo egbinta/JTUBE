@@ -1,7 +1,11 @@
 <template>
   <div v-if="content.type == 'video'" class="col-sm-12 d-flex">
     <div class="avatar">
-      <img :src="content.video.thumbnails[0].url" alt="" />
+      <router-link
+        :to="{ name: 'movie', params: { videoId: content.video.videoId } }"
+      >
+        <img :src="content.video.thumbnails[0].url" alt="" />
+      </router-link>
     </div>
     <div class="main-text">
       <div class="text ml-2">{{ content.video.author.title }}</div>
