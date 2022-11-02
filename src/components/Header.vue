@@ -5,7 +5,7 @@
         <div class="col-md-2 logo">
           <router-link to="/">
             <span><i class="fa fa-play" aria-hidden="true"></i></span>
-            Jtube
+            <span class="logo">Jtube</span>
           </router-link>
         </div>
         <div class="col-md-8 search">
@@ -63,6 +63,9 @@ export default {
   color: #fff;
   font-size: 20px;
   font-weight: 700;
+}
+.logo:hover {
+  text-decoration: none !important;
 }
 .logo .fa-play {
   font-size: 22px;

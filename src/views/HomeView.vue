@@ -1,7 +1,11 @@
 <template>
   <div>
     <div class="home-page">
-      <SideBar />
+      <SideBar
+        @search-value="searchValue"
+        @search-sport="searchSport"
+        @search-news="searchNews"
+      />
       <!-- <ItemList :items="items" /> -->
       <LandingPage :itemsData="itemsData" />
     </div>
@@ -25,25 +29,86 @@ export default {
     return {
       itemsData: [],
       searchItem: "videos",
+      getData: [],
     };
   },
   methods: {
-    // async loadPage() {
-    //   const response = await axios.get(
-    //     "https://youtube138.p.rapidapi.com/search/",
-    //     {
-    //       params: { q: this.searchItem },
-    //       headers: {
-    //         "X-RapidAPI-Key":
-    //           "0aea2bfe0bmshc9a762c6bdc9530p1e63edjsn7f1aaeb420ec",
-    //         "X-RapidAPI-Host": "youtube138.p.rapidapi.com",
-    //       },
-    //     }
-    //   );
-    //   const result = response.data.contents;
-    //   this.itemsData = result;
-    //   console.log(result);
-    // },
+    async loadPage() {
+      const response = await axios.get(
+        "https://youtube138.p.rapidapi.com/search/",
+        {
+          params: { q: this.searchItem },
+          headers: {
+            "X-RapidAPI-Key":
+              "0aea2bfe0bmshc9a762c6bdc9530p1e63edjsn7f1aaeb420ec",
+            "X-RapidAPI-Host": "youtube138.p.rapidapi.com",
+          },
+        }
+      );
+      const result = response.data.contents;
+      this.itemsData = result;
+      console.log(result);
+    },
+
+    async searchValue(value) {
+      await axios
+        .get("https://youtube138.p.rapidapi.com/search/", {
+          params: { q: value },
+          headers: {
+            "X-RapidAPI-Key":
+              "0aea2bfe0bmshc9a762c6bdc9530p1e63edjsn7f1aaeb420ec",
+            "X-RapidAPI-Host": "youtube138.p.rapidapi.com",
+          },
+        })
+        .then((response) => {
+          const result = response.data.contents;
+          this.itemsData = result;
+          console.log(result);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    },
+
+    async searchSport(value) {
+      await axios
+        .get("https://youtube138.p.rapidapi.com/search/", {
+          params: { q: value },
+          headers: {
+            "X-RapidAPI-Key":
+              "0aea2bfe0bmshc9a762c6bdc9530p1e63edjsn7f1aaeb420ec",
+            "X-RapidAPI-Host": "youtube138.p.rapidapi.com",
+          },
+        })
+        .then((response) => {
+          const result = response.data.contents;
+          this.itemsData = result;
+          console.log(result);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    },
+
+    async searchNews(value) {
+      await axios
+        .get("https://youtube138.p.rapidapi.com/search/", {
+          params: { q: value },
+          headers: {
+            "X-RapidAPI-Key":
+              "0aea2bfe0bmshc9a762c6bdc9530p1e63edjsn7f1aaeb420ec",
+            "X-RapidAPI-Host": "youtube138.p.rapidapi.com",
+          },
+        })
+        .then((response) => {
+          const result = response.data.contents;
+          this.itemsData = result;
+          console.log(result);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    },
   },
   async created() {
     await this.loadPage();
