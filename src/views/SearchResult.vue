@@ -18,12 +18,35 @@ import SideBar from "@/components/SideBar.vue";
 import SearchPageList from "@/components/SearchPageList.vue";
 export default {
   name: "SearchResult",
-  computed: {
+  components: {
     SideBar,
     SearchPageList,
   },
-  props: {
-    items: Array,
+  data() {
+    return {
+      items: Array,
+    };
+  },
+  inject: ["searchData"],
+  computed: {
+    getSearchResult() {
+      this.items = this.searchData.data;
+    },
+  },
+  created() {
+    this.getSearchResult();
   },
 };
 </script>
+
+<style scoped>
+.home-page {
+  display: flex;
+}
+.main-area {
+  background-color: rgb(211, 208, 235);
+  width: 84vw;
+  max-height: 687px;
+  overflow-y: scroll;
+}
+</style>

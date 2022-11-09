@@ -51,7 +51,7 @@ export default {
 }
 .card-body {
   padding: 8px 0px;
-  background-color: rgb(211, 208, 235);
+  background: rgb(250 250 250);
 }
 .card {
   width: 18.5rem;

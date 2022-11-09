@@ -61,7 +61,8 @@ export default {
 .navbar {
   width: 250px;
   height: 92.2vh;
-  background: rgb(229 229 251);
+  background: rgb(250 250 250);
+  border-right: 1px solid #ddd;
 }
 .navItem {
   margin-top: -520px !important;

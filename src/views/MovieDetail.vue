@@ -1,6 +1,9 @@
 <template>
   <div class="about">
-    <div class="container mt-4 mb-5">
+    <div v-if="loading">
+      <Spinner />
+    </div>
+    <div v-else class="container mt-4 mb-5">
       <div class="row">
         <div class="col-md-8">
           <YouTube :src="videoURL" ref="youtube" width="850" height="500" />
@@ -72,12 +75,14 @@ import axios from "axios";
 import YouTube from "vue3-youtube";
 import RelatedVideo from "@/components/RelatedVideo.vue";
 import ViewComments from "@/components/ViewComments.vue";
+import Spinner from "@/components/Spinner.vue";
 export default {
   name: "MovieDetail",
   components: {
     YouTube,
     RelatedVideo,
     ViewComments,
+    Spinner,
   },
   data() {
     return {
@@ -89,8 +94,10 @@ export default {
       showMoretext: false,
       showmore: true,
       showless: false,
+      loading: true,
     };
   },
+  inject: ["myspinner"],
   methods: {
     show() {
       this.showMoretext = !this.showMoretext;
@@ -103,23 +110,28 @@ export default {
       this.showless = false;
     },
     async videoDetail() {
-      const response = await axios.get(
-        "https://youtube138.p.rapidapi.com/video/details/",
-        {
+      const response = await axios
+        .get("https://youtube138.p.rapidapi.com/video/details/", {
           params: { id: this.videoID },
           headers: {
             "X-RapidAPI-Key":
               "0aea2bfe0bmshc9a762c6bdc9530p1e63edjsn7f1aaeb420ec",
             "X-RapidAPI-Host": "youtube138.p.rapidapi.com",
           },
-        }
-      );
-      const result = response.data;
-      this.details = result;
-      console.log(result);
+        })
+        .then((response) => {
+          const result = response.data;
+          this.details = result;
+          console.log(result);
+        })
+        .catch((error) => {
+          this.loading = false;
+          console.log(error);
+        });
+      this.loading = false;
     },
     async relatedcontent() {
-      const response = await axios
+      await axios
         .get("https://youtube138.p.rapidapi.com/video/related-contents/", {
           params: { id: this.videoID },
           headers: {

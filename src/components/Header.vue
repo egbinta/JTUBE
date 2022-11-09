@@ -54,13 +54,14 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 .head {
-  padding: 10px;
-  z-index: 99;
-  background: rgb(47, 47, 83);
+  padding: 9px;
+  z-index: 999;
+  border-bottom: 1px solid #ddd;
+  background: rgb(250 250 250);
 }
 .logo {
   text-decoration: none;
-  color: #fff;
+  color: rgb(28, 26, 26);
   font-size: 20px;
   font-weight: 700;
 }
@@ -92,7 +93,7 @@ export default {
 .user {
   display: flex;
   justify-content: flex-end;
-  color: #fff;
+  color: #000;
   font-size: 22px;
   font-weight: 700;
 }
